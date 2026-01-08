@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>&#1573;&#1581;&#1589;&#1575;&#1574;&#1610;&#1575;&#1578;</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+&#1573;&#1581;&#1589;&#1575;&#1574;&#1610;&#1575;&#1578; &#1575;&#1604;&#1591;&#1604;&#1576;&#1575;&#1578;
+</header>
+
+<section class="products">
+
+<div class="product">
+<h2>&#1573;&#1580;&#1605;&#1575;&#1604;&#1610; &#1575;&#1604;&#1591;&#1604;&#1576;&#1575;&#1578;</h2>
+<p id="ordersCount">0</p>
+</div>
+
+<div class="product">
+<h2>&#1575;&#1604;&#1593;&#1575;&#1574;&#1583;&#1575;&#1578;</h2>
+<p id="revenue">0 &#1583;&#1580;</p>
+</div>
+
+</section>
+
+<script>
+var orders = JSON.parse(localStorage.getItem("orders")) || [];
+document.getElementById("ordersCount").innerHTML = orders.length;
+document.getElementById("revenue").innerHTML =
+orders.reduce((a,b)=>a+b.total,0) + " &#1583;&#1580;";
+</script>
+
+</body>
+</html>
