@@ -1,15 +1,27 @@
 const SHEET_URL = "PUT_YOUR_GOOGLE_SCRIPT_URL";
 let BALADIYAT = {};
+let WILAYAS = {
+  "1": "أدرار"
+  // زِد باقي الولايات لاحقًا
+};
 
 fetch("baladiyat.json")
-.then(r=>r.json())
-.then(data=>{
-  data.forEach(w=>{
-    const code=w.wilaya_code.padStart(2,"0");
-    BALADIYAT[code]=w.cities.map(c=>c.commune_name);
-  });
-});
+  .then(res => res.json())
+  .then(data => {
+    data.forEach(item => {
+      const wilayaName = WILAYAS[item.wilaya_id];
+      if (!wilayaName) return;
 
+      if (!BALADIYAT[wilayaName]) {
+        BALADIYAT[wilayaName] = [];
+      }
+
+      BALADIYAT[wilayaName].push(item.ar_name);
+    });
+
+    fillWilayas();
+    console.log("OK", BALADIYAT);
+  });
 function showForm(id){
   const size=document.getElementById("size"+id).value;
   const color=document.getElementById("color"+id).value;
