@@ -74,17 +74,20 @@ fetch("baladiyat.json")
       BALADIYAT[wilayaName].push(item.ar_name);
     });
 
-    fillWilayas();
-    console.log("OK", BALADIYAT);
-  });
-function showForm(id){
-  const size=document.getElementById("size"+id).value;
-  const color=document.getElementById("color"+id).value;
-  const msg=document.getElementById("msg"+id);
-  if(size.includes("اختر")||color.includes("اختر")){
-    msg.innerHTML="&#1575;&#1582;&#1578;&#1585; &#1575;&#1604;&#1605;&#1602;&#1575;&#1587; &#1608;&#1575;&#1604;&#1604;&#1608;&#1606;";
-    msg.style.color="red"; return;
+    function fillWilayas(){
+  const w = document.getElementById("wilaya1");
+  w.innerHTML = '<option value="">اختر الولاية</option>';
+
+  // مثال أسعار توصيل (عدّلها كما تحب)
+  const DELIVERY_PRICE = 500;
+
+  for(const id in WILAYAS){
+    const option = document.createElement("option");
+    option.value = WILAYAS[id] + "|" + DELIVERY_PRICE;
+    option.textContent = WILAYAS[id];
+    w.appendChild(option);
   }
+    
   document.getElementById("form"+id).style.display="block";
   msg.innerHTML="";
 }
